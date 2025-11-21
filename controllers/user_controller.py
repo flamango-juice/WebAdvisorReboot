@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify, make_response
-# from os import environ
 from model.base import db
 from model.user import User
 from model.role import Role
 
 app = Flask(__name__)
-# Configure the database (using SQLite here, modify the URI for PostgreSQL, MySQL, etc.)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../webadvisor.sqllite'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/trevor-hartman/PycharmProjects/WebAdvisor/webadvisor.sqllite'
+# app = Flask(__name__, instance_path=f'\..\{app.root_path}\instance_test')
+# Might be able to change the instance folder, but we'll leave it alone for now.
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../../SQLite_DB.sqlite'
+# app.config['SQLALCHEMY DATABASE_URI'] = 'mysql+pymysql://root: [PASSWORD_REDACTED] @127.0.0.1:3306
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the db instance with the Flask app
