@@ -9,6 +9,6 @@ user_role_link = Table(
 
 course_user_link = Table(
     'course_user_link', db.Model.metadata,
-    Column('user_id', Integer, ForeignKey('user.user_id'), primary_key=True),
-        Column('class_id', Integer, ForeignKey('course.class_id'), autoincrement=True, primary_key=True)
+    Column('class_id', Integer, ForeignKey('course.class_id'), autoincrement=True, primary_key=True),
+        Column('user_id', Integer, ForeignKey('user.user_id'), primary_key=True)
 )
