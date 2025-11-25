@@ -17,6 +17,6 @@ An experimental remake of Ellucian WebAdvisor in Python utilizing Flask, SQLAlch
 - Started writing CRUD controllers and User Stories.
 
 ### Upcoming Development Focus for Sprint 5: 11/22 - 12/13
-- Create Flask/SQLAlchemy models and controllers for all tables in the database.
-- Implement Role Based Access Control and test with dummy data.
-- Create proper website flows and GUI.
+- Created Flask/SQLAlchemy models and controllers for all relevant tables in the database.
+- *Implement Role Based Access Control and test with dummy data.*
+- *Create proper website flows and GUI.*
