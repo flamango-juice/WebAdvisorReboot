@@ -16,6 +16,11 @@ Fairly self-explanatory. See **Roles** and beyond for more relevant details.
 | 200123  | jdoe123  | JOHN       | DOE       | jdoe123@email.com | No `[0]`     | Yes `[1]`  |
 |         |          |            |           |                   |              |            |
 
+
+### You will only need CREATE/UPDATE/DELETE (+READ) access for the User and Course tables as well as the Course_User_Link and User_Role_Link linking tables!
+#### All other tables are **static** and should only have READ access - they are to be referenced, NOT edited.
+#### Users and Courses will change and you will need to change their linking table as well. For everything else, modifying the User/Role linking table is all that is necessary because Roles are tied to Permissions and Permissions are tied to Roles, Operations, and Components.
+
 ## Roles:
 *Roles* are broad containers for **Users** that fit into certain categories. *Roles* are associated with **Permissions**, **Operations**, and **Components**. *Roles* will have the following attributes:
 

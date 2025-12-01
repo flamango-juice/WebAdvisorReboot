@@ -7,6 +7,7 @@ from model.course import Course
 
 if __name__ == '__main__':
     engine = create_engine('sqlite:///../../SQLite_DB.sqlite')
+    #engine = create_engine('mysql+pymysql://root:Redwo0d$@127.0.0.1:3306/webadvisor_reboot')
 
     # Create all tables if they don't exist
     db.Model.metadata.create_all(engine)

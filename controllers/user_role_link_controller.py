@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, make_response, request
-
 from model.associations import user_role_link
 from model.base import db
 from model.user_role_link import UserRoleLink as UserProfile
