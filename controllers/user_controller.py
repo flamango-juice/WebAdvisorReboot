@@ -1,10 +1,9 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, request, jsonify, make_response, render_template
 from model.base import db
 from model.user import User
 
 user_bp = Blueprint('user', __name__,
-                    template_folder='templates',
-                    static_folder='static', url_prefix='/user')
+                    url_prefix='/user')
 
 # --- CRUD Operations ---
 # Create a user (POST)
@@ -31,13 +30,15 @@ def create_user():
 @user_bp.route('/all', methods=['GET'])
 def get_users():
     users = User.query.all()
-    return make_response(jsonify([user.json() for user in users]), 200)
+    return render_template('user/list.html', users=[user for user in users])
+    #return make_response(jsonify([user.json() for user in users]), 200)
 
 # Read a single user by ID (GET)
 @user_bp.route('/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     user = User.query.get_or_404(user_id)
-    return make_response(jsonify({'user': user.json()}), 200)
+    return render_template('user/profile.html', user=user)
+    #return make_response(jsonify({'user': user.json()}), 200)
 
 # Update a user by ID (PUT/PATCH)
 @user_bp.route('/<int:user_id>', methods=['PUT'])
@@ -45,13 +46,13 @@ def update_user(user_id):
     user = User.query.get_or_404(user_id)
     data = request.get_json()
     # see create user method for why USER_ID exists here
-    user.user_id = data.get('user_id', user.user_id)
+    user.user_id = data.get('id', user.user_id)
     user.user_username = data.get('username', user.user_username)
     user.user_first_name = data.get('first_name', user.user_first_name)
     user.user_last_name = data.get('last_name', user.user_last_name)
     user.user_email = data.get('email', user.user_email)
-    user.is_prof = data.get('prof', user.is_prof)
-    user.is_student = data.get('student', user.is_student)
+    user.is_prof = data.get('is_prof', user.is_prof)
+    user.is_student = data.get('is_student', user.is_student)
     db.session.commit()
     return make_response(jsonify({'message': 'user updated', 'user': user.json()}), 200)
 
