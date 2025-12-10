@@ -67,11 +67,17 @@
     }
     .field{display:flex;flex-direction:column;margin-bottom:12px}
     label{font-size:13px;margin-bottom:6px;color:var(--muted)}
-    input[type="text"], input[type="password"], select{
-      padding:10px 12px;border-radius:8px;border:1px solid #e6e9ef;
+    input[type="text"], input[type="email"], input[type="password"], select {
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e6e9ef;
       background:linear-gradient(180deg,#fff,var(--glass));
       font-size:14px;
+      width:100%;
+      box-sizing: border-box;
     }
+    input[type="checkbox"] { margin-right: 10px; }
+    .form-group { margin-bottom: 15px; }
     .btn{
       display:inline-block;
       padding:10px 14px;border-radius:8px;background:var(--accent);
