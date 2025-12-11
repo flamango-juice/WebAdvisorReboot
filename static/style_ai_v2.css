@@ -1,4 +1,6 @@
-/* GLOBAL */
+/* ------------------------------------------------------------
+   GLOBAL BASE — typography, smoothing, layout foundation
+------------------------------------------------------------ */
 * { box-sizing: border-box; }
 html, body {
   height: 100%;
@@ -8,7 +10,9 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* THEME TOKENS - LIGHT (default) */
+/* ------------------------------------------------------------
+   THEME TOKENS — LIGHT MODE (default)
+------------------------------------------------------------ */
 :root{
   --bg: #f5f7fa;
   --card-bg: #ffffff;
@@ -16,6 +20,7 @@ html, body {
   --text: #111827;
   --accent: #0066ff;
   --muted: #6b7280;
+  --muted-2: #3c4248;
   --border: #e7eefb;
   --shadow-sm: 0 2px 6px rgba(15,23,36,0.06);
 
@@ -32,6 +37,7 @@ html[data-theme="dark"]{
   --text: #e6eef8;
   --accent: #4c9aff;
   --muted: #9aa8bb;
+  --muted-2: #bcc1c7;
   --border: #21272f;
   --shadow-sm: 0 2px 6px rgba(0,0,0,0.6);
 }
@@ -100,9 +106,15 @@ body{
   color: var(--text);
 }
 .field { display: flex; flex-direction: column; margin-bottom: 10px; }
-label { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+
+label {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
 input[type= "text"], input[type= "email"], input[type= "password"], select {
-  padding: 10px 12px;
+  padding: 8px 12px;
   border-radius: 6px;
   border: 1px solid var(--border);
   background: var(--card-bg);
@@ -123,7 +135,11 @@ input[type= "text"], input[type= "email"], input[type= "password"], select {
   width: 100%;
   box-shadow: none;
 }
-.btn.small { padding:6px 8px; width:auto; }
+.btn.small {
+  padding:6px 8px;
+  width:auto;
+}
+
 .secondary{
   background: transparent;
   color: var(--accent);
@@ -132,9 +148,15 @@ input[type= "text"], input[type= "email"], input[type= "password"], select {
 }
 
 /* Quick Links */
-.quick-links{ display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.quick-links{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
 .link-item{
-  display: flex; align-items:center; gap: 10px; padding: 8px 10px; border-radius: 6px;
+  display: flex;align-items:center;
+  gap: 10px; padding: 8px 10px; border-radius: 6px;
   text-decoration: none; color: inherit;
   border: 1px solid transparent;
 }
@@ -150,7 +172,7 @@ input[type= "text"], input[type= "email"], input[type= "password"], select {
 }
 .searchbar input{ flex: 1; border: 0; background: transparent; padding: 6px 8px; color: var(--text) }
 
-/* content + cards */
+/* Dynamic Page Content */
 .content{ display: flex; flex-direction: column; gap: 18px; }
 .widgets{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
 
@@ -165,6 +187,24 @@ input[type= "text"], input[type= "email"], input[type= "password"], select {
 /* Rounded Corners for UI */
 .card h2{ margin: 0 0 8px 0; font-size: 15px; }
 
+/* Profile Formatting */
+.form-group {
+  margin: 6px 0 16px 10px;
+}
+.form-group label[type="title"] {
+  font-size: 16px;
+  color: var(--text);
+  margin: 0 10px 0 0;
+}
+.form-group label[type="input"] {
+  font-size: 14px;
+  color: var(--muted-2);
+}
+.form-group label[type="checkbox"]{
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 16px;
+}
 /* Model list */
 .model-list-container{
   border-radius: 8px;
