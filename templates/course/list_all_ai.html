@@ -1,0 +1,29 @@
+{% extends 'layout_ai.html' %}
+
+{% block title %}List of Courses{% endblock %}
+
+{% block content %}
+
+<div class="model-list-container">
+
+  <!-- Header -->
+  <div class="model-item header-row">
+    <div>Class ID</div>
+    <div>Course ID</div>
+    <div>Title</div>
+    <div>Schedule</div>
+  </div>
+
+  <!-- Rows -->
+  {% for course in courses %}
+  <div class="model-item data-row">
+    <div>{{ course.class_id }}</div>
+    <div>{{ course.course_id }}</div>
+    <div>{{ course.course_title }}</div>
+    <div>{{ course.days_offered }} – {{ course.times_offered }}</div>
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}
