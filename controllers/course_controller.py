@@ -1,28 +1,32 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, request, jsonify, make_response, render_template
 from model.base import db
 from model.course import Course
+# from model.user import User
 
-course_bp = Blueprint('course', __name__,
-                    template_folder='templates',
-                    static_folder='static', url_prefix='/course')
+course_bp = Blueprint('course', __name__, url_prefix='/course')
 
 # --- CRUD Operations ---
 # Create a course (POST)
 @course_bp.route('/create', methods=['POST'])
 def create_course():
     data = request.get_json()
-    new_course = Course(class_id=data.get('class_id', None),
-                        course_id=data.get('course_id', None),
-                        section_id=data.get('section_id', None),
-                        course_title=data.get('course_title', None),
-                        department=data.get('department', None),
-                        campus=data.get('campus', None),
-                        term=data.get('term', None),
-                        days_offered=data.get('days_offered', None),
-                        times_offered=data.get('times_offered', None),
-                        enroll_status=data.get('enroll_status', None),
-                        credits=data.get('credits', None),
-                        )
+
+    class_id =data.get('class_id', None)
+    course_id = data.get('course_id', None)
+    section_id = data.get('section_id', None)
+    course_title = data.get('course_title', None)
+    department = data.get('department', None)
+    campus = data.get('campus', None)
+    term = data.get('term', None)
+    days_offered = data.get('days_offered', None)
+    times_offered = data.get('times_offered', None)
+    enroll_status = data.get('enroll_status', None)
+    credits_ = data.get('credits', None)
+
+    new_course = Course(class_id=class_id,course_id=course_id,section_id=section_id,course_title=course_title,
+                        department=department, campus=campus, term=term, days_offered=days_offered,
+                        times_offered=times_offered, enroll_status=enroll_status, credits=credits_)
+
     db.session.add(new_course)
     db.session.commit()
     return make_response(jsonify({'message': 'course created', 'course': new_course.json()}), 201)
@@ -31,7 +35,8 @@ def create_course():
 @course_bp.route('/all', methods=['GET'])
 def get_courses():
     courses = Course.query.all()
-    return make_response(jsonify([course.json() for course in courses]), 200)
+    return render_template('course/list_all_ai.html', courses=[course for course in courses])
+    # return make_response(jsonify([course.json() for course in courses]), 200)
 
 # Read a single course by ID (GET)
 @course_bp.route('/<int:class_id>', methods=['GET'])
@@ -65,3 +70,16 @@ def delete_course(class_id):
     db.session.delete(course)
     db.session.commit()
     return make_response(jsonify({'message': 'class deleted'}), 200)
+
+
+# Add a user by username to a class by id
+#@course_bp.route('/<int:class_id>/add/<username>', methods=['GET'])
+#def add_user_to_role(username, role_id):
+#    user = User.query.filter_by(user_username=username).first()
+#    # Need to query the model/table correctly, copied from role controller
+#    course = Course.query.filter_by(class_id=class_id)
+#    user.roles.append(course)
+#    db.session.add(user)
+#    db.session.commit()
+
+#    return make_response(jsonify({'r': role_id, 'un': username}))
